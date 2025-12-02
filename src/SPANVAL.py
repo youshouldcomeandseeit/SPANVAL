@@ -184,27 +184,7 @@ class SPANVAL():
     def run(self, crit,target_crit, iter=500, num_epochs=100, batch=1000, num_restarts=1,
             estim_lr=1e-2, pred_lr=1e-2, moving_average_window=20, fix_baseline=False, use_cuda=True, target_batch_size=512, source_batch_size=512,
             save_dir='./meta_pg_results/', noise_labels=None):
-        '''
-        train the estimator model
-
-        args:
-            perf_metric                     metric to optimize, current options: ["mse", "bce", "acc", "auroc"]
-            crit_pred                       predictor loss criteria, NOTE: must not have an reduction, e.g., out.size(0) == x.size(0); sample loss must be multiplied by bernoulli sampled value ([0,1])
-            outer_iter                      number of estimator epochs to train
-            inner_iter                      number of iterations to train predictor model at each estimator step
-            outer_batch                     outer loop batch size; Bs
-            inner_batch                     inner loop batch size; Bp
-            estim_lr                        estimator learning rate
-            pred_lr                         predictor learning rate
-            moving_average_window           moving average window of the baseline
-            entropy_beta                    starting entropy weight
-            entropy_decay                   exponential decay rate of entropy weight
-            fix_baseline                    whether to use a fixed baseline or moving average window
-            use_cuda                        whether to use GPU if available
-
-        output
-            data values                     probability of inclusion [0,1]; shape: (nsamples,)
-        '''
+        
 
         if torch.cuda.is_available() & use_cuda:
             device = 'cuda'
@@ -381,4 +361,5 @@ def get_per_sample_grad_func(crit, fmodel):
     ft_compute_grad = grad(compute_loss_stateless_model)
 
     return ft_compute_grad
+
 
