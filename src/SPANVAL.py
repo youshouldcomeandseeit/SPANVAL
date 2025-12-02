@@ -30,14 +30,7 @@ class SPANVAL():
             self.num_classes = len(np.unique(self.y_train.detach().cpu().numpy()))
 
     def fit(self, model, x, y, crit, batch_size, lr, iters, use_cuda=True, verbose=False):
-        '''Fits a model with a given number of iterations
 
-        NOTE: There is a critical distinction between training with iterations rather than epochs; with epochs, more obs. results in
-              more iterations/gradient-updates, whereas with iterations the amount of data is indenpendant of the number of iterations.
-              This is critical for our DVRL implementation b/c the RL algorithm may be confounded by performance differences due to number
-              of weight updates, e.g., hyper parameter of `inner_iter`. By training with iterations (rather than epochs), we ensure independance
-              of `inner_iter` with sample importance.
-        '''
 
         if torch.cuda.is_available() & use_cuda:
             device = 'cuda'
@@ -361,5 +354,6 @@ def get_per_sample_grad_func(crit, fmodel):
     ft_compute_grad = grad(compute_loss_stateless_model)
 
     return ft_compute_grad
+
 
 
