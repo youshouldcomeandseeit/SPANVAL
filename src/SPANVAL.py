@@ -1,18 +1,4 @@
-'''
-Implementation `Data Valuation with Reinforcement learning` by Nathaniel Evans (evansna@ohsu.edu). Citation:
 
-@misc{https://doi.org/10.48550/arxiv.1909.11671,
-  doi = {10.48550/ARXIV.1909.11671},
-  url = {https://arxiv.org/abs/1909.11671},
-  author = {Yoon, Jinsung and Arik, Sercan O. and Pfister, Tomas},
-  keywords = {Machine Learning (cs.LG), Machine Learning (stat.ML), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Data Valuation using Reinforcement Learning},
-  publisher = {arXiv},
-  year = {2019},
-  copyright = {arXiv.org perpetual, non-exclusive license}
-}
-
-'''
 
 import torch
 import numpy as np
@@ -395,3 +381,4 @@ def get_per_sample_grad_func(crit, fmodel):
     ft_compute_grad = grad(compute_loss_stateless_model)
 
     return ft_compute_grad
+
